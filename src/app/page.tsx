@@ -1,7 +1,16 @@
+import { Navbar } from '@/components/navbar/navbar'
+
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  );
+    <main className="min-h-screen">
+      <Navbar />
+      <div className="pt-24 px-4">
+        <h1 className="text-3xl font-bold">Bem-vindo à CogniTec</h1>
+        <p className="mt-4">
+          Soluções inovadoras para melhorar a qualidade de vida das pessoas, com
+          foco especial em indivíduos com Alzheimer e seus responsáveis.
+        </p>
+      </div>
+    </main>
+  )
 }
