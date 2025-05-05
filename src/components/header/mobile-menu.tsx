@@ -21,7 +21,6 @@ const moreLinks = [
   { name: 'Parceiros', href: '/parceiros' },
 ]
 
-// Animation variants for consistent animations
 const itemVariants = {
   hidden: { opacity: 0, x: -20 },
   visible: (i: number) => ({
@@ -54,6 +53,8 @@ export function MobileMenu() {
     <div>
       <Button
         variant="ghost"
+        className="
+        hover:bg-gray-900"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
@@ -67,7 +68,7 @@ export function MobileMenu() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6 text-white" />
             </motion.div>
           ) : (
             <motion.div
@@ -77,7 +78,7 @@ export function MobileMenu() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6 text-white" />
             </motion.div>
           )}
         </AnimatePresence>

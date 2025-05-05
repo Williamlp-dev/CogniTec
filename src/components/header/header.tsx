@@ -24,14 +24,11 @@ export function Header() {
       setIsMobile(window.innerWidth < 768)
     }
 
-    // Set initial state
     handleResize()
 
-    // Add event listeners
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('resize', handleResize)
 
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
@@ -46,8 +43,8 @@ export function Header() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white shadow-md py-2'
-          : 'bg-white/80 backdrop-blur-sm py-4'
+          ? 'bg-[color-mix(in_srgb,var(--background-color),black_30%)] shadow-md py-2'
+          : 'bg-[color-mix(in_srgb,var(--background-color),transparent_30%)] backdrop-blur-sm py-4'
       }`}
     >
       <div className="mx-auto px-4">
@@ -61,7 +58,6 @@ export function Header() {
             <Logo />
           </motion.div>
 
-          {/* Use custom breakpoint at 1020px instead of Tailwind's lg */}
           <div
             className={`${isMobile ? 'hidden' : 'flex'} flex-1 justify-center`}
           >
@@ -74,12 +70,10 @@ export function Header() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="flex items-center"
           >
-            {/* Only show AuthButtons on larger screens (above 1020px) */}
             <div className={isMobile ? 'hidden' : 'block'}>
               <AuthButtons />
             </div>
 
-            {/* Show MobileMenu below 1020px */}
             <div className={isMobile ? 'block' : 'hidden'}>
               <MobileMenu />
             </div>

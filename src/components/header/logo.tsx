@@ -11,7 +11,7 @@ export function Logo() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <span className="text-xl font-bold tracking-tight">Cognitec</span>
+        <span className="text-2xl font-heading  text-white">Cognitec</span>
         <span className="text-xl font-bold text-yellow-400">.</span>
       </motion.div>
     </Link>

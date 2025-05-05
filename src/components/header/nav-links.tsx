@@ -20,7 +20,6 @@ const moreLinks = [
   { name: 'Parceiros', href: '/parceiros' },
 ]
 
-// Animation variants for consistent animations
 const navItemVariants = {
   hidden: { opacity: 0, y: -10 },
   visible: (i: number) => ({
@@ -79,7 +78,7 @@ export function NavLinks() {
         >
           <Link
             href={link.href}
-            className="text-gray-500 hover:text-blue font-medium transition-colors duration-200"
+            className="text-white hover:text-blue font-medium transition-colors duration-200"
           >
             {link.name}
           </Link>
@@ -88,7 +87,7 @@ export function NavLinks() {
 
       <div className="relative" ref={dropdownRef}>
         <motion.button
-          className="flex items-center text-gray-500 hover:text-blue font-medium transition-colors duration-200"
+          className="flex items-center text-white hover:text-blue font-medium transition-colors duration-200"
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
