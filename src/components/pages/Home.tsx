@@ -23,7 +23,7 @@ export default function Home() {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           <span className="block mb-2">Cognitec</span>
           <span className="block">
-            Soluções de IA para Alzheimer
+            Soluções de IA para Alzheime
             <span className="text-amber-300">.</span>
           </span>
         </h1>
