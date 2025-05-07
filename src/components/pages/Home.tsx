@@ -20,11 +20,11 @@ export default function Home() {
       </div>
 
       <div className="relative flex flex-col items-center justify-center h-screen text-center px-4 z-20">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-          <span className="block mb-2">Cognitec</span>
-          <span className="block">
-            Soluções de IA para Alzheime
-            <span className="text-amber-300">.</span>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6">
+          <span className="block font-poppins mb-2">Cognitec</span>
+          <span className="block font-poppins">
+            Soluções de IA para Alzheimer
+            <span className="text-amber-300 font-poppins">.</span>
           </span>
         </h1>
       </div>
