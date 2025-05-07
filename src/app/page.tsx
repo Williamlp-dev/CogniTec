@@ -6,6 +6,8 @@ export default function Pages() {
   return (
     <main>
       <Home />
+      <About />
+      <Service />
     </main>
   )
 }
