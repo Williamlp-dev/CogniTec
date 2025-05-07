@@ -106,7 +106,7 @@ export function MobileMenu() {
                 >
                   <Link
                     href={link.href}
-                    className="block text-gray-500 hover:text-blue font-medium py-2 transition-colors duration-200"
+                    className="block text-gray-500 hover:text-blue font-poppins font-medium py-2 transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -122,7 +122,7 @@ export function MobileMenu() {
                   variants={itemVariants}
                   whileHover={{ scale: 1.03, x: 5 }}
                   type="button"
-                  className="flex items-center justify-between w-full text-gray-500 hover:text-blue font-medium py-2 transition-colors duration-200"
+                  className="flex items-center justify-between w-full text-gray-500 hover:text-blue font-poppins font-medium py-2 transition-colors duration-200"
                   onClick={() => setIsMoreOpen(!isMoreOpen)}
                 >
                   <span>Mais</span>
@@ -152,7 +152,7 @@ export function MobileMenu() {
                         >
                           <Link
                             href={link.href}
-                            className="flex items-center text-gray-400 hover:text-blue py-2 transition-colors duration-200"
+                            className="flex items-center font-poppins text-gray-400 hover:text-blue py-2 transition-colors duration-200"
                             onClick={() => {
                               setIsMoreOpen(false)
                               setIsOpen(false)
@@ -176,7 +176,7 @@ export function MobileMenu() {
                 className="pt-4"
               >
                 <Link href="/login" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full justify-center bg-blue hover:bg-blue/90 text-white font-medium">
+                  <Button className="w-full justify-center bg-blue hover:bg-blue/90 text-white font-poppins font-medium">
                     Registro / Login
                   </Button>
                 </Link>
