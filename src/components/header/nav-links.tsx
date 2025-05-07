@@ -78,7 +78,7 @@ export function NavLinks() {
         >
           <Link
             href={link.href}
-            className="text-white hover:text-blue font-medium transition-colors duration-200"
+            className="text-white hover:text-blue font-medium font-poppins transition-colors duration-200"
           >
             {link.name}
           </Link>
@@ -87,7 +87,7 @@ export function NavLinks() {
 
       <div className="relative" ref={dropdownRef}>
         <motion.button
-          className="flex items-center text-white hover:text-blue font-medium transition-colors duration-200"
+          className="flex items-center text-white hover:text-blue font-medium font-poppins transition-colors duration-200"
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -123,7 +123,7 @@ export function NavLinks() {
                   >
                     <Link
                       href={link.href}
-                      className="block px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-blue transition-colors duration-200"
+                      className="block px-4 py-2 text-sm font-poppins text-gray-500 hover:bg-gray-100 hover:text-blue transition-colors duration-200"
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}
