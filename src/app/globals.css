@@ -23,3 +23,19 @@
   --font-sans: var(--font-geist-sans);
   --font-poppins: var(--font-poppins);
 }
+
+.testimonial-swiper .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.5;
+}
+
+.testimonial-swiper .swiper-pagination-bullet-active {
+  background-color: white;
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .testimonial-swiper .swiper-pagination {
+    bottom: 0;
+  }
+}
