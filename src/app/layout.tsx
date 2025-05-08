@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Montserrat, Oxanium, Poppins } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header/header'
+import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
 const oxanium = Oxanium({
   weight: ['500', '600'],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   )
