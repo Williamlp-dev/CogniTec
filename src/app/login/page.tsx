@@ -175,9 +175,8 @@ export default function LoginPage() {
           errorMessage = errorData.error || errorMessage
         } catch (e) {
           console.error("Erro ao parsear resposta:", e)
-          // Se não conseguir parsear como JSON, tente obter o texto
-          const errorText = await response.text()
-          console.error("Texto da resposta de erro:", errorText)
+          // Não tente ler o corpo da resposta novamente, pois já foi consumido
+          console.error("Status da resposta:", response.status, response.statusText)
         }
 
         setRegisterError(errorMessage)
