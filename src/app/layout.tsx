@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Montserrat, Oxanium, Poppins } from 'next/font/google'
+import type React from 'react'
 import './globals.css'
+import { AuthProvider } from '@/components/auth/auth-provider'
 import { Header } from '@/components/header/header'
 import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
@@ -37,9 +39,11 @@ export default function RootLayout({
       className={`${oxanium.variable} ${montserrat.variable} ${poppins.variable}`}
     >
       <body>
-        <Header />
-        {children}
-        <ScrollToTop />
+        <AuthProvider>
+          <Header />
+          {children}
+          <ScrollToTop />
+        </AuthProvider>
       </body>
     </html>
   )
