@@ -1,136 +1,137 @@
 'use client'
 
-import { Star } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Brain, ChevronDown, ChevronUp, Users, Wifi } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import { Autoplay, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from 'react'
 
-export default function TestimonialCarousel() {
-  const [mounted, setMounted] = useState(false)
+export default function Qa() {
+  const [expandedQuestion, setExpandedQuestion] = useState<string | null>(
+    'question1'
+  )
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const toggleQuestion = (questionId: string) => {
+    if (expandedQuestion === questionId) {
+      setExpandedQuestion(null)
+    } else {
+      setExpandedQuestion(questionId)
+    }
+  }
 
-  const testimonials = [
+  interface QuestionItem {
+    id: string
+    icon: React.ReactNode
+    question: string
+    answer: string
+  }
+
+  const questions: QuestionItem[] = [
     {
-      id: 'testimonial-1',
-      name: 'Ana Beatriz Costa',
-      role: 'Enfermeira de Cuidados Domiciliares',
-      rating: 5,
-      quote:
-        'Com a Cognitec, consigo organizar os medicamentos e compromissos dos pacientes com Alzheimer de forma clara. Uma ferramenta indispensável no meu dia a dia.',
-      image: '/assets/img/He.jpg',
+      id: 'question1',
+      icon: <Wifi className="text-yellow-400 mr-2" />,
+      question: 'O aplicativo Cognitec funciona offline?',
+      answer:
+        'Sim, o aplicativo Cognitec foi projetado para funcionar offline em sua maior parte. Os exercícios cognitivos e o acompanhamento diário podem ser realizados sem conexão com a internet. No entanto, algumas funcionalidades como sincronização de dados, atualizações de conteúdo e relatórios avançados para os cuidadores necessitam de conexão com a internet ocasionalmente. Recomendamos conectar o dispositivo à internet pelo menos uma vez por semana para garantir que todos os dados sejam sincronizados corretamente.',
     },
     {
-      id: 'testimonial-2',
-      name: 'Eduardo Silva',
-      role: 'Responsável Técnico em Clínica',
-      rating: 5,
-      quote:
-        'Estamos utilizando a Cognitec em nossa clínica para otimizar o acompanhamento dos pacientes. A integração com os cuidadores tem feito toda a diferença na evolução dos casos.',
-      image: '/assets/img/hc.jpg',
+      id: 'question2',
+      icon: <Users className="text-yellow-400 mr-2" />,
+      question: 'É possível cadastrar mais de um paciente no mesmo perfil?',
+      answer:
+        'Esta funcionalidade ainda não está disponível em nossa versão atual.',
     },
     {
-      id: 'testimonial-3',
-      name: 'Mariana Lopes',
-      role: 'Cuidadora Profissional',
-      rating: 5,
-      quote:
-        'O aplicativo da Cognitec facilitou minha rotina de cuidados com os pacientes. Agora consigo acompanhar lembretes e registrar informações de forma prática e segura.',
-      image: '/assets/img/mc.jpg',
-    },
-    {
-      id: 'testimonial-4',
-      name: 'Rodrigo Menezes',
-      role: 'Filho e Cuidador Familiar',
-      rating: 5,
-      quote:
-        'Minha mãe foi diagnosticada com Alzheimer recentemente, e a Cognitec tem sido essencial para monitorar sua rotina e garantir mais segurança no dia a dia.',
-      image: '/assets/img/team-3.jpg',
-    },
-    {
-      id: 'testimonial-5',
-      name: 'Dr. Lucas Ferreira',
-      role: 'Geriatra',
-      rating: 5,
-      quote:
-        'Recomendo a Cognitec aos meus pacientes e familiares. A interface é intuitiva e contribui muito para a adesão ao tratamento e registro de comportamentos importantes.',
-      image: '/assets/img/Hg.jpg',
+      id: 'question3',
+      icon: <Brain className="text-yellow-400 mr-2" />,
+      question: 'Como a Inteligência Artificial é usada no app?',
+      answer:
+        'Esta funcionalidade ainda não está disponível em nossa versão atual.',
     },
   ]
 
-  if (!mounted) {
-    return null
-  }
-
   return (
-    <div className="relative w-full min-h-[500px] overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/img/cabeca.jpg"
-          alt="Background"
-          fill
-          className="object-cover brightness-50"
-          priority
-        />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-          O que nossos usuários dizem
-        </h2>
-
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          className="testimonial-swiper"
+    <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-12">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="md:w-1/2 w-full"
         >
-          {testimonials.map(testimonial => (
-            <SwiperSlide key={testimonial.id}>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 max-w-2xl mx-auto">
-                <div className="flex justify-center mb-6">
-                  <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-white">
-                    <Image
-                      src={testimonial.image || '/placeholder.svg'}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
+          <h1 className="text-4xl font-bold mb-4 font-heading">
+            Perguntas <span className="text-yellow-400">Frequentes</span>
+          </h1>
+          <p className="text-lg text-gray-600 mb-8 font-sans">
+            Aqui você encontra respostas para dúvidas comuns sobre a Cognitec e
+            nossas soluções para Alzheimer.
+          </p>
+
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            {questions.map((q, index) => (
+              <motion.div
+                key={q.id}
+                className="border border-gray-200 rounded-lg overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+              >
+                <button
+                  type="button"
+                  className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50"
+                  onClick={() => toggleQuestion(q.id)}
+                >
+                  <div className="flex items-center">
+                    {q.icon}
+                    <span className="font-medium">{q.question}</span>
                   </div>
-                </div>
+                  <motion.div
+                    animate={{ rotate: expandedQuestion === q.id ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown className="text-yellow-400" />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {expandedQuestion === q.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-4 bg-gray-50 border-t border-gray-200">
+                        <p className="text-gray-700">{q.answer}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
 
-                <p className="text-white font-bold text-xl text-center">
-                  {testimonial.name}
-                </p>
-
-                <p className="text-gray-300 text-center mb-4">
-                  {testimonial.role}
-                </p>
-
-                <div className="flex justify-center mb-4">
-                  {Array(testimonial.rating)
-                    .fill(0)
-                    .map((_, i) => (
-                      <Star
-                        key={`${testimonial.id}-star-${i}`}
-                        className="h-5 w-5 text-yellow-400 fill-yellow-400"
-                      />
-                    ))}
-                </div>
-                <blockquote className="text-white text-lg md:text-xl text-center italic">
-                  "{testimonial.quote}"
-                </blockquote>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="md:w-1/2 w-full flex justify-center"
+        >
+          <div className="relative w-full h-72 sm:h-72 md:h-[400px] lg:h-[400px] max-w-lg">
+            <Image
+              src="/assets/img/Pergunta.jpg"
+              alt="Perguntas Frequentes Cognitec"
+              fill
+              className="rounded-lg shadow-xl object-cover"
+              priority
+            />
+          </div>
+        </motion.div>
       </div>
     </div>
   )
