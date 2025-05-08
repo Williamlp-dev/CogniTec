@@ -1,36 +1,79 @@
-import type { LucideIcon } from 'lucide-react'
+import * as React from 'react'
 
-interface CardProps {
-  title: string
-  description: string
-  Icon: LucideIcon
-  iconColor?: string
-  iconBgColor?: string
-}
+import { cn } from '@/lib/utils'
 
-export default function Card({
-  title,
-  description,
-  Icon,
-  iconColor = 'text-black',
-  iconBgColor = 'bg-amber-400',
-}: CardProps) {
-  return (
-    <div className="h-full font-poppins rounded-xloverflow-hidden shadow-md border border-gray-300 bg-white transition-all duration-300 hover:shadow-xl hover:translate-y-[-4px]">
-      <div className="p-6 sm:p-8 flex flex-col items-center text-center h-full">
-        <div className={`mb-5 ${iconBgColor} p-3.5 rounded-xl`}>
-          <Icon
-            className={iconColor}
-            size={28}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
-        </div>
-        <h3 className="text-lg sm:text-xl font-medium mb-3 text-gray-900">
-          {title}
-        </h3>
-        <p className="text-gray-600 text-sm sm:text-base">{description}</p>
-      </div>
-    </div>
-  )
-}
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      'rounded-lg border border-gray-200 bg-white text-gray-950 shadow-sm dark:border-gray-800 dark:bg-gray-950 dark:text-gray-50',
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = 'Card'
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('flex flex-col space-y-1.5 p-6', className)}
+    {...props}
+  />
+))
+CardHeader.displayName = 'CardHeader'
+
+const CardTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn(
+      'text-2xl font-semibold leading-none tracking-tight',
+      className
+    )}
+    {...props}
+  />
+))
+CardTitle.displayName = 'CardTitle'
+
+const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn('text-sm text-gray-500 dark:text-gray-400', className)}
+    {...props}
+  />
+))
+CardDescription.displayName = 'CardDescription'
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
+))
+CardContent.displayName = 'CardContent'
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('flex items-center p-6 pt-0', className)}
+    {...props}
+  />
+))
+CardFooter.displayName = 'CardFooter'
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
