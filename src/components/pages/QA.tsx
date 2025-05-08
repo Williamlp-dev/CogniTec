@@ -5,7 +5,7 @@ import { Brain, ChevronDown, ChevronUp, Users, Wifi } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-export default function Qa() {
+export default function QA() {
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(
     'question1'
   )
