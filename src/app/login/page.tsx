@@ -255,8 +255,6 @@ export default function LoginPage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Coluna da esquerda - Formulário */}
           <div className="w-full max-w-md mx-auto">
             <div className="mb-8 text-center">
               <h1 className="text-3xl font-bold text-white mb-2">Bem-vindo à CogniTec</h1>
@@ -521,32 +519,6 @@ export default function LoginPage() {
               </TabsContent>
             </Tabs>
           </div>
-
-          {/* Coluna da direita - Imagem */}
-          <div className="hidden lg:flex justify-center items-center">
-            <div className="relative w-full h-[600px] rounded-xl overflow-hidden">
-              <Image src="/assets/img/al.jpg" alt="Cuidados com Alzheimer" fill className="object-cover" priority />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-                <div className="max-w-md">
-                  <h2 className="text-2xl font-bold text-white mb-4">Tecnologia a serviço do cuidado</h2>
-                  <p className="text-gray-200">
-                    A CogniTec desenvolve soluções inovadoras para melhorar a qualidade de vida de pessoas com Alzheimer
-                    e seus cuidadores.
-                  </p>
-                  <div className="mt-6 flex items-center">
-                    <div className="relative w-16 h-16">
-                      <Image src="/assets/img/logo.png" alt="Logo CogniTec" fill className="object-contain" />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-white font-semibold">CogniTec</p>
-                      <p className="text-gray-300 text-sm">Soluções de IA para Alzheimer</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </main>
   )
