@@ -13,7 +13,6 @@ import { Toaster } from "@/components/ui/toaster"
 import { toast } from "@/components/ui/use-toast"
 import { ArrowLeft, Eye, EyeOff, Lock, Mail, Phone, User } from "lucide-react"
 import { signIn } from "next-auth/react"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -97,7 +96,7 @@ export default function LoginPage() {
     }
   }
 
-  // Função para lidar com o registro
+  // Atualizar a função handleRegister para exibir mensagens de erro mais específicas
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
@@ -255,270 +254,270 @@ export default function LoginPage() {
           </Button>
         </div>
 
-          <div className="w-full max-w-md mx-auto">
-            <div className="mb-8 text-center">
-              <h1 className="text-3xl font-bold text-white mb-2">Bem-vindo à CogniTec</h1>
-              <p className="text-gray-400">Acesse sua conta ou crie um novo cadastro</p>
-            </div>
+        <div className="w-full max-w-md mx-auto">
+          <div className="mb-8 text-center">
+            <h1 className="text-3xl font-bold text-white mb-2">Bem-vindo à CogniTec</h1>
+            <p className="text-gray-400">Acesse sua conta ou crie um novo cadastro</p>
+          </div>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="register">Cadastro</TabsTrigger>
-              </TabsList>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-8">
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="register">Cadastro</TabsTrigger>
+            </TabsList>
 
-              {/* Tab de Login */}
-              <TabsContent value="login">
-                <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
-                  <CardContent className="pt-6">
-                    <form className="space-y-4" onSubmit={handleLogin}>
-                      {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
+            {/* Tab de Login */}
+            <TabsContent value="login">
+              <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  <form className="space-y-4" onSubmit={handleLogin}>
+                    {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
 
-                      <div className="space-y-2">
-                        <Label htmlFor="email-login" className="text-white">
-                          E-mail
-                        </Label>
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="email-login"
-                            type="email"
-                            placeholder="seu@email.com"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={loginEmail}
-                            onChange={(e) => setLoginEmail(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <Label htmlFor="password-login" className="text-white">
-                            Senha
-                          </Label>
-                          <Link href="/esqueci-senha" className="text-xs text-yellow-400 hover:underline">
-                            Esqueceu a senha?
-                          </Link>
-                        </div>
-                        <div className="relative">
-                          <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="password-login"
-                            type={showPassword ? "text" : "password"}
-                            placeholder="••••••••"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={loginPassword}
-                            onChange={(e) => setLoginPassword(e.target.value)}
-                            required
-                          />
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
-                            onClick={togglePasswordVisibility}
-                          >
-                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                            <span className="sr-only">{showPassword ? "Esconder senha" : "Mostrar senha"}</span>
-                          </Button>
-                        </div>
-                      </div>
-
-                      <Button
-                        type="submit"
-                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? "Entrando..." : "Entrar"}
-                      </Button>
-
-                      <div className="text-center text-sm text-gray-400 mt-4">
-                        Não tem uma conta?{" "}
-                        <button type="button" className="text-yellow-400 hover:underline" onClick={switchToRegister}>
-                          Cadastre-se
-                        </button>
-                      </div>
-                    </form>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              {/* Tab de Registro */}
-              <TabsContent value="register">
-                <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
-                  <CardContent className="pt-6">
-                    <form className="space-y-4" onSubmit={handleRegister}>
-                      {registerError && <p className="text-red-500 text-sm">{registerError}</p>}
-
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-white">
-                          Nome completo
-                        </Label>
-                        <div className="relative">
-                          <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="name"
-                            placeholder="Seu nome completo"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="email-register" className="text-white">
-                          E-mail
-                        </Label>
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="email-register"
-                            type="email"
-                            placeholder="seu@email.com"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="password-register" className="text-white">
-                          Senha
-                        </Label>
-                        <div className="relative">
-                          <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="password-register"
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Mínimo 8 caracteres"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                          />
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
-                            onClick={togglePasswordVisibility}
-                          >
-                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                            <span className="sr-only">{showPassword ? "Esconder senha" : "Mostrar senha"}</span>
-                          </Button>
-                        </div>
-                        <p className="text-xs text-gray-400">Mínimo de 8 caracteres, incluindo letras e números</p>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label className="text-white">Tipo de usuário</Label>
-                        <RadioGroup
-                          defaultValue="familiar"
-                          className="flex flex-col space-y-2"
-                          value={userType}
-                          onValueChange={(value) => {
-                            setUserType(value)
-                            setDocument("") // Limpar o documento ao mudar o tipo
-                          }}
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="familiar" id="familiar" className="border-gray-600" />
-                            <Label htmlFor="familiar" className="text-white">
-                              Familiar
-                            </Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="cuidador" id="cuidador" className="border-gray-600" />
-                            <Label htmlFor="cuidador" className="text-white">
-                              Cuidador
-                            </Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="medico" id="medico" className="border-gray-600" />
-                            <Label htmlFor="medico" className="text-white">
-                              Médico
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="document" className="text-white">
-                          {userType === "medico" ? "CRM" : "CPF"}
-                        </Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="email-login" className="text-white">
+                        E-mail
+                      </Label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                         <Input
-                          id="document"
-                          placeholder={userType === "medico" ? "Digite seu CRM" : "Digite seu CPF"}
-                          className="bg-gray-700 border-gray-600 text-white"
-                          value={document}
-                          onChange={(e) => setDocument(formatDocument(e.target.value))}
+                          id="email-login"
+                          type="email"
+                          placeholder="seu@email.com"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={loginEmail}
+                          onChange={(e) => setLoginEmail(e.target.value)}
                           required
                         />
                       </div>
+                    </div>
 
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-white">
-                          Telefone
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <Label htmlFor="password-login" className="text-white">
+                          Senha
                         </Label>
-                        <div className="relative">
-                          <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                          <Input
-                            id="phone"
-                            placeholder="(00) 00000-0000"
-                            className="pl-10 bg-gray-700 border-gray-600 text-white"
-                            value={phone}
-                            onChange={(e) => setPhone(formatPhone(e.target.value))}
-                            required
-                          />
-                        </div>
+                        <Link href="/esqueci-senha" className="text-xs text-yellow-400 hover:underline">
+                          Esqueceu a senha?
+                        </Link>
                       </div>
-
-                      <div className="flex items-start space-x-2 pt-2">
-                        <Checkbox
-                          id="terms"
-                          className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:text-black"
-                          checked={acceptTerms}
-                          onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
+                      <div className="relative">
+                        <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          id="password-login"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="••••••••"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={loginPassword}
+                          onChange={(e) => setLoginPassword(e.target.value)}
+                          required
                         />
-                        <div className="grid gap-1.5 leading-none">
-                          <label htmlFor="terms" className="text-sm text-gray-300 leading-tight">
-                            Aceito os{" "}
-                            <Link href="/termos" className="text-yellow-400 hover:underline">
-                              Termos de Uso
-                            </Link>{" "}
-                            e a{" "}
-                            <Link href="/privacidade" className="text-yellow-400 hover:underline">
-                              Política de Privacidade
-                            </Link>
-                          </label>
-                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
+                          onClick={togglePasswordVisibility}
+                        >
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          <span className="sr-only">{showPassword ? "Esconder senha" : "Mostrar senha"}</span>
+                        </Button>
                       </div>
+                    </div>
 
-                      <Button
-                        type="submit"
-                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-                        disabled={isLoading}
+                    <Button
+                      type="submit"
+                      className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Entrando..." : "Entrar"}
+                    </Button>
+
+                    <div className="text-center text-sm text-gray-400 mt-4">
+                      Não tem uma conta?{" "}
+                      <button type="button" className="text-yellow-400 hover:underline" onClick={switchToRegister}>
+                        Cadastre-se
+                      </button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Tab de Registro */}
+            <TabsContent value="register">
+              <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  <form className="space-y-4" onSubmit={handleRegister}>
+                    {registerError && <p className="text-red-500 text-sm">{registerError}</p>}
+
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="text-white">
+                        Nome completo
+                      </Label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          id="name"
+                          placeholder="Seu nome completo"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="email-register" className="text-white">
+                        E-mail
+                      </Label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          id="email-register"
+                          type="email"
+                          placeholder="seu@email.com"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="password-register" className="text-white">
+                        Senha
+                      </Label>
+                      <div className="relative">
+                        <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          id="password-register"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Mínimo 8 caracteres"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
+                          onClick={togglePasswordVisibility}
+                        >
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          <span className="sr-only">{showPassword ? "Esconder senha" : "Mostrar senha"}</span>
+                        </Button>
+                      </div>
+                      <p className="text-xs text-gray-400">Mínimo de 8 caracteres, incluindo letras e números</p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-white">Tipo de usuário</Label>
+                      <RadioGroup
+                        defaultValue="familiar"
+                        className="flex flex-col space-y-2"
+                        value={userType}
+                        onValueChange={(value) => {
+                          setUserType(value)
+                          setDocument("") // Limpar o documento ao mudar o tipo
+                        }}
                       >
-                        {isLoading ? "Cadastrando..." : "Cadastrar"}
-                      </Button>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="familiar" id="familiar" className="border-gray-600" />
+                          <Label htmlFor="familiar" className="text-white">
+                            Familiar
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="cuidador" id="cuidador" className="border-gray-600" />
+                          <Label htmlFor="cuidador" className="text-white">
+                            Cuidador
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="medico" id="medico" className="border-gray-600" />
+                          <Label htmlFor="medico" className="text-white">
+                            Médico
+                          </Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
 
-                      <div className="text-center text-sm text-gray-400 mt-4">
-                        Já tem uma conta?{" "}
-                        <button type="button" className="text-yellow-400 hover:underline" onClick={switchToLogin}>
-                          Faça login
-                        </button>
+                    <div className="space-y-2">
+                      <Label htmlFor="document" className="text-white">
+                        {userType === "medico" ? "CRM" : "CPF"}
+                      </Label>
+                      <Input
+                        id="document"
+                        placeholder={userType === "medico" ? "Digite seu CRM" : "Digite seu CPF"}
+                        className="bg-gray-700 border-gray-600 text-white"
+                        value={document}
+                        onChange={(e) => setDocument(formatDocument(e.target.value))}
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-white">
+                        Telefone
+                      </Label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          id="phone"
+                          placeholder="(00) 00000-0000"
+                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          value={phone}
+                          onChange={(e) => setPhone(formatPhone(e.target.value))}
+                          required
+                        />
                       </div>
-                    </form>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </div>
+                    </div>
+
+                    <div className="flex items-start space-x-2 pt-2">
+                      <Checkbox
+                        id="terms"
+                        className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:text-black"
+                        checked={acceptTerms}
+                        onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
+                      />
+                      <div className="grid gap-1.5 leading-none">
+                        <label htmlFor="terms" className="text-sm text-gray-300 leading-tight">
+                          Aceito os{" "}
+                          <Link href="/termos" className="text-yellow-400 hover:underline">
+                            Termos de Uso
+                          </Link>{" "}
+                          e a{" "}
+                          <Link href="/privacidade" className="text-yellow-400 hover:underline">
+                            Política de Privacidade
+                          </Link>
+                        </label>
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Cadastrando..." : "Cadastrar"}
+                    </Button>
+
+                    <div className="text-center text-sm text-gray-400 mt-4">
+                      Já tem uma conta?{" "}
+                      <button type="button" className="text-yellow-400 hover:underline" onClick={switchToLogin}>
+                        Faça login
+                      </button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </main>
   )

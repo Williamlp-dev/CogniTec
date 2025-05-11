@@ -18,8 +18,8 @@ model User {
   image         String?
   password      String?
   userType      String?   // "familiar", "cuidador", "medico"
-  document      String?   // CPF ou CRM
-  phone         String?
+  document      String?   @unique  // CPF ou CRM - agora com índice único
+  phone         String?   @unique  // Telefone - agora com índice único
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]

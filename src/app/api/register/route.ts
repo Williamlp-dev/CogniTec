@@ -56,13 +56,43 @@ export async function POST(req: Request) {
       }
     }
 
+    // Remover formatação do documento e telefone
+    const cleanDocument = document.replace(/\D/g, "")
+    const cleanPhone = phone.replace(/\D/g, "")
+
     // Verificar se o email já existe
-    const existingUser = await db.user.findUnique({
+    const existingEmail = await db.user.findUnique({
       where: { email },
     })
 
-    if (existingUser) {
+    if (existingEmail) {
       return NextResponse.json({ error: "Email já cadastrado. Por favor, use outro email." }, { status: 409 })
+    }
+
+    // Verificar se o documento (CPF/CRM) já existe
+    const existingDocument = await db.user.findFirst({
+      where: { document: cleanDocument },
+    })
+
+    if (existingDocument) {
+      return NextResponse.json(
+        {
+          error:
+            userType === "medico"
+              ? "CRM já cadastrado. Por favor, verifique seus dados."
+              : "CPF já cadastrado. Por favor, verifique seus dados.",
+        },
+        { status: 409 },
+      )
+    }
+
+    // Verificar se o telefone já existe
+    const existingPhone = await db.user.findFirst({
+      where: { phone: cleanPhone },
+    })
+
+    if (existingPhone) {
+      return NextResponse.json({ error: "Telefone já cadastrado. Por favor, use outro número." }, { status: 409 })
     }
 
     // Hash da senha
@@ -75,8 +105,8 @@ export async function POST(req: Request) {
         email,
         password: hashedPassword,
         userType,
-        document,
-        phone,
+        document: cleanDocument,
+        phone: cleanPhone,
       },
     })
 
