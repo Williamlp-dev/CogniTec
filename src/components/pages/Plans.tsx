@@ -3,7 +3,7 @@ import TitleSection from '../ui/titlesection'
 
 export default function Plans() {
   return (
-    <section className="py-16 md:py-20 overflow-hidden">
+    <section className="overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         <TitleSection subtitle="Serviços" title="Conheça Nossos Planos" />
       </div>

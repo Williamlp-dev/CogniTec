@@ -50,7 +50,7 @@ export default function QA() {
   ]
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <section className="max-w-6xl mx-auto px-4 py-20">
       <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-12">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -133,6 +133,6 @@ export default function QA() {
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   )
 }
