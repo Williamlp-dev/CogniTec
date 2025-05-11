@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { AuthButtons } from './auth-buttons'
 import { Logo } from './logo'
@@ -11,6 +12,16 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
+  const pathname = usePathname()
+  const [renderHeader, setRenderHeader] = useState(true)
+
+  useEffect(() => {
+    if (pathname === '/login') {
+      setRenderHeader(false)
+    } else {
+      setRenderHeader(true)
+    }
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +45,10 @@ export function Header() {
       window.removeEventListener('resize', handleResize)
     }
   }, [scrolled])
+
+  if (!renderHeader) {
+    return null
+  }
 
   return (
     <motion.header

@@ -17,6 +17,7 @@ export default function TestimonialCarousel() {
 
   const testimonials = [
     {
+      id: 'testimonial-1',
       name: 'Ana Beatriz Costa',
       role: 'Enfermeira de Cuidados Domiciliares',
       rating: 5,
@@ -25,6 +26,7 @@ export default function TestimonialCarousel() {
       image: '/assets/img/He.jpg',
     },
     {
+      id: 'testimonial-2',
       name: 'Eduardo Silva',
       role: 'Responsável Técnico em Clínica',
       rating: 5,
@@ -33,6 +35,7 @@ export default function TestimonialCarousel() {
       image: '/assets/img/hc.jpg',
     },
     {
+      id: 'testimonial-3',
       name: 'Mariana Lopes',
       role: 'Cuidadora Profissional',
       rating: 5,
@@ -41,6 +44,7 @@ export default function TestimonialCarousel() {
       image: '/assets/img/mc.jpg',
     },
     {
+      id: 'testimonial-4',
       name: 'Rodrigo Menezes',
       role: 'Filho e Cuidador Familiar',
       rating: 5,
@@ -49,6 +53,7 @@ export default function TestimonialCarousel() {
       image: '/assets/img/team-3.jpg',
     },
     {
+      id: 'testimonial-5',
       name: 'Dr. Lucas Ferreira',
       role: 'Geriatra',
       rating: 5,
@@ -87,8 +92,8 @@ export default function TestimonialCarousel() {
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           className="testimonial-swiper"
         >
-          {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index}>
+          {testimonials.map(testimonial => (
+            <SwiperSlide key={testimonial.id}>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 max-w-2xl mx-auto">
                 <div className="flex justify-center mb-6">
                   <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-white">
@@ -114,7 +119,7 @@ export default function TestimonialCarousel() {
                     .fill(0)
                     .map((_, i) => (
                       <Star
-                        key={i}
+                        key={`${testimonial.id}-star-${i}`}
                         className="h-5 w-5 text-yellow-400 fill-yellow-400"
                       />
                     ))}

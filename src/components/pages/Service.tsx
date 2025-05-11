@@ -7,7 +7,7 @@ import {
   Users2,
 } from 'lucide-react'
 import Image from 'next/image'
-import Card from '../ui/card'
+import CardSc from '../ui/cardsc'
 import TitleSection from '../ui/titlesection'
 
 export default function Service() {
@@ -20,42 +20,42 @@ export default function Service() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Card Original - Alzheimer */}
-          <Card
+          <CardSc
             title="Desenvolvimento De Soluções Para Alzheimer"
             description="Criaremos tecnologias acessíveis e inovadoras para melhorar a interação e bem-estar dos pacientes com Alzheimer."
             Icon={HeartPulse}
           />
 
           {/* Card de Suporte */}
-          <Card
+          <CardSc
             title="Suporte a Cuidadores e Familiares"
             description="Oferecemos ferramentas para facilitar o cuidado diário e melhorar a comunicação entre pacientes e cuidadores."
             Icon={Users2}
           />
 
           {/* Card de Monitoramento */}
-          <Card
+          <CardSc
             title="IA para Monitoramento de Pacientes"
             description="Implementamos IA para ajudar no monitoramento e na personalização do cuidado dos pacientes, proporcionando maior segurança."
             Icon={Cpu}
           />
 
           {/* Card de APP */}
-          <Card
+          <CardSc
             title="Aplicativo Cognitec"
             description="Desenvolvemos um aplicativo intuitivo para facilitar a navegação de pacientes com Alzheimer e a interação com seus cuidadores."
             Icon={Smartphone}
           />
 
           {/* Card de Privacidade */}
-          <Card
+          <CardSc
             title="Segurança e Privacidade"
             description="Garantimos que todas as interações com a nossa tecnologia sejam seguras e que as informações dos pacientes sejam tratadas com a máxima privacidade."
             Icon={ShieldUser}
           />
 
           {/* Card de Suporte */}
-          <Card
+          <CardSc
             title="Suporte e Assistência"
             description="Oferecemos suporte técnico para garantir que a tecnologia esteja sempre funcionando perfeitamente para pacientes e cuidadores."
             Icon={MessageSquareText}
