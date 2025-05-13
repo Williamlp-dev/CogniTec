@@ -1,0 +1,75 @@
+"use client"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { LogOut, Settings, User } from "lucide-react"
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+
+export function UserProfile() {
+  const { data: session } = useSession()
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleLogout = async () => {
+    setIsLoading(true)
+    await signOut({ redirect: false })
+    router.push("/")
+    setIsLoading(false)
+  }
+
+  const navigateToProfile = () => {
+    router.push("/perfil")
+  }
+
+  const navigateToSettings = () => {
+    router.push("/perfil/configuracoes")
+  }
+
+  // Get first letter of user's name for avatar fallback
+  const getInitials = () => {
+    if (!session?.user?.name) return "U"
+    return session.user.name.charAt(0).toUpperCase()
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+          <Avatar className="h-10 w-10 border border-gray-200">
+            <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || "User"} />
+            <AvatarFallback className="bg-yellow-400 text-black font-medium">{getInitials()}</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <div className="flex flex-col space-y-1 p-2">
+          <p className="text-sm font-medium leading-none">{session?.user?.name}</p>
+          <p className="text-xs leading-none text-gray-500">{session?.user?.email}</p>
+        </div>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={navigateToProfile} className="cursor-pointer">
+          <User className="mr-2 h-4 w-4" />
+          <span>Perfil</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={navigateToSettings} className="cursor-pointer">
+          <Settings className="mr-2 h-4 w-4" />
+          <span>Configurações</span>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer" disabled={isLoading}>
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>{isLoading ? "Saindo..." : "Sair"}</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
