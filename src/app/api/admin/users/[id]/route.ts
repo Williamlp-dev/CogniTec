@@ -5,8 +5,8 @@ import { NextResponse } from "next/server"
 
 export async function DELETE(
   request: Request,
-  context: { params: { id: string } }
-) {
+  { params }: { params: { id: string } }
+): Promise<Response> {
   try {
     // Verificar se o usuário está autenticado e é administrador
     const session = await getServerSession(authOptions)
@@ -15,7 +15,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Não autorizado" }, { status: 403 })
     }
 
-    const userId = context.params.id
+    const userId = params.id
 
     // Verificar se o usuário existe
     const user = await db.user.findUnique({
