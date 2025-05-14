@@ -4,6 +4,10 @@ import type { NextAuthOptions, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { db } from "./db"
 
+// Credenciais do administrador (idealmente, devem vir de variáveis de ambiente)
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@cognitec.com"
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123"
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
@@ -26,6 +30,17 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
+        // Verificar se é o administrador
+        if (credentials.email === ADMIN_EMAIL && credentials.password === ADMIN_PASSWORD) {
+          return {
+            id: "admin-id",
+            email: ADMIN_EMAIL,
+            name: "Administrador",
+            isAdmin: true,
+          } as User
+        }
+
+        // Se não for o administrador, verificar no banco de dados
         const user = await db.user.findUnique({
           where: {
             email: credentials.email,
@@ -47,8 +62,8 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
-          // Garantir que userType seja string | undefined, não string | null
           userType: user.userType || undefined,
+          isAdmin: false, // Usuários normais não são administradores
         } as User
       },
     }),
@@ -60,6 +75,7 @@ export const authOptions: NextAuthOptions = {
           ...token,
           id: user.id,
           userType: user.userType,
+          isAdmin: user.isAdmin,
         }
       }
       return token
@@ -71,6 +87,7 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.id,
           userType: token.userType,
+          isAdmin: token.isAdmin,
         },
       }
     },
