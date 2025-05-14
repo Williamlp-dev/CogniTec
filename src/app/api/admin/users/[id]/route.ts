@@ -3,12 +3,19 @@ import { db } from "@/lib/db"
 import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server"
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-): Promise<Response> {
+interface RouteParams {
+  params: {
+    id: string
+  }
+}
+
+/**
+ * DELETE handler for deleting a user by ID
+ * Uses the correct type signature for Next.js App Router dynamic route handlers
+ */
+export async function DELETE(_request: Request, { params }: RouteParams): Promise<Response> {
   try {
-    // Verificar se o usuário está autenticado e é administrador
+    // Verify authentication and admin status
     const session = await getServerSession(authOptions)
 
     if (!session || session.user.isAdmin !== true) {
@@ -17,7 +24,7 @@ export async function DELETE(
 
     const userId = params.id
 
-    // Verificar se o usuário existe
+    // Check if user exists
     const user = await db.user.findUnique({
       where: { id: userId },
     })
@@ -26,7 +33,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Usuário não encontrado" }, { status: 404 })
     }
 
-    // Excluir o usuário
+    // Delete the user
     await db.user.delete({
       where: { id: userId },
     })
