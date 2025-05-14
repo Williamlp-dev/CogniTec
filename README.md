@@ -107,7 +107,7 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 ## 📞 Contato
 
 - Email: cognitecst@gmail.com
-- Website: [cognitec.com](https://cognitec.com)
+- Website: [cognitec.com](https://cognitec.vercel.app/)
 
 ---
 
