@@ -112,5 +112,4 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 ---
 
 <p align="center">
-  Desenvolvido com ❤️ pela equipe CogniTec
-</p>
+  Desenvolvido com 💚 pela equipe Push
