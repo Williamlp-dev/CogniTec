@@ -196,19 +196,22 @@ export function MobileMenu() {
                       </Button>
                     </Link>
 
-                     {session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+                    {session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
                       <Link href="/admin/dashboard" onClick={() => setIsOpen(false)}>
                         <Button variant="outline" className="w-full justify-start">
                           <Settings className="mr-2 h-4 w-4" />
                           Dashboard Admin
                         </Button>
                       </Link>
-                     )}
+                    )}
 
                     <Button
                       className="w-full justify-start bg-red-50 text-red-600 hover:bg-red-100 border border-red-200"
                       onClick={() => {
-                        signOut({ redirect: false })
+                        signOut({
+                          redirect: true,
+                          callbackUrl: "/",
+                        })
                         setIsOpen(false)
                       }}
                     >

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 // Adicionar a importação do ícone Dashboard
-import { LogOut, Settings, User, LayoutDashboard } from "lucide-react"
+import { LogOut, User, LayoutDashboard } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -22,9 +22,16 @@ export function UserProfile() {
 
   const handleLogout = async () => {
     setIsLoading(true)
-    await signOut({ redirect: false })
-    router.push("/")
-    setIsLoading(false)
+    try {
+      await signOut({
+        redirect: true,
+        callbackUrl: "/",
+      })
+      // No need for manual router.push as we're using redirect: true
+    } catch (error) {
+      console.error("Error during logout:", error)
+      setIsLoading(false)
+    }
   }
 
   const navigateToProfile = () => {
