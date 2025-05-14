@@ -6,6 +6,7 @@ import Home from '@/components/pages/Home'
 import Plans from '@/components/pages/Plans'
 import QA from '@/components/pages/QA'
 import Service from '@/components/pages/Service'
+import { ScrollToTop } from '@/components/ui/scroll-to-top'
 
 export default function Pages() {
   return (
@@ -18,6 +19,7 @@ export default function Pages() {
       <TestimonialCarousel />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }

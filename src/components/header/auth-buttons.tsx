@@ -21,7 +21,7 @@ export function AuthButtons() {
     <div className="flex items-center space-x-6">
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Link href="/login">
-          <Button className="bg-blue text-white font-medium hover:bg-blue/90">Registro / Login</Button>
+          <Button className="bg-yellow-400 text-black font-medium hover:bg-blue/90">Registro / Login</Button>
         </Link>
       </motion.div>
     </div>

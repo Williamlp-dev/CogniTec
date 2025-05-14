@@ -1,21 +1,9 @@
 import type { Metadata } from 'next'
-import { Montserrat, Oxanium, Poppins } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import type React from 'react'
 import './globals.css'
 import { AuthProvider } from '@/components/auth/auth-provider'
 import { Header } from '@/components/header/header'
-import { ScrollToTop } from '@/components/ui/scroll-to-top'
-
-const oxanium = Oxanium({
-  weight: ['500', '600'],
-  subsets: ['latin'],
-  variable: '--font-oxanium',
-})
-const montserrat = Montserrat({
-  weight: ['400', '600'],
-  subsets: ['latin'],
-  variable: '--font-monstserrat',
-})
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -36,13 +24,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${oxanium.variable} ${montserrat.variable} ${poppins.variable}`}
+      className={`${poppins.variable}`}
     >
       <body>
         <AuthProvider>
           <Header />
           {children}
-          <ScrollToTop />
         </AuthProvider>
       </body>
     </html>
