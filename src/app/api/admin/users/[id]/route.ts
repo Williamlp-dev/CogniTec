@@ -1,31 +1,34 @@
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getServerSession } from "next-auth"
-import { NextResponse } from "next/server"
+import { NextResponse, NextRequest } from "next/server"
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest) {
   try {
-    // Verificar se o usuário está autenticado e é administrador
+    // Obter o ID do usuário pela URL
+    const url = new URL(request.url)
+    const id = url.pathname.split("/").pop()
+
+    if (!id) {
+      return NextResponse.json({ error: "ID inválido" }, { status: 400 })
+    }
+
     const session = await getServerSession(authOptions)
 
     if (!session || session.user.isAdmin !== true) {
       return NextResponse.json({ error: "Não autorizado" }, { status: 403 })
     }
 
-    const userId = params.id
-
-    // Verificar se o usuário existe
     const user = await db.user.findUnique({
-      where: { id: userId },
+      where: { id },
     })
 
     if (!user) {
       return NextResponse.json({ error: "Usuário não encontrado" }, { status: 404 })
     }
 
-    // Excluir o usuário
     await db.user.delete({
-      where: { id: userId },
+      where: { id },
     })
 
     return NextResponse.json({ success: true })
