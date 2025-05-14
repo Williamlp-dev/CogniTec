@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CogniTec - Soluções de IA para Alzheimer
 
-## Getting Started
+<p align="center">
+  <img src="/public/assets/img/logo.png" alt="CogniTec Logo" width="200" />
+</p>
 
-First, run the development server:
+CogniTec é uma plataforma web dedicada a melhorar a qualidade de vida de pessoas com Alzheimer e facilitar o trabalho de seus cuidadores, familiares e profissionais de saúde através de tecnologia assistiva e inteligência artificial.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧠 Sobre o Projeto
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O CogniTec foi desenvolvido para criar um ambiente digital seguro e acolhedor para pacientes com Alzheimer, seus familiares, cuidadores e médicos. A plataforma está alinhada com os Objetivos de Desenvolvimento Sustentável (ODS) da ONU, especificamente com o ODS 3 - Saúde e Bem-Estar.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Principais Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Sistema de autenticação** com diferentes perfis de usuário (familiar, cuidador, médico)
+- **Painel administrativo** para gerenciamento de usuários
+- **Perfil personalizado** para cada tipo de usuário
+- **Landing page informativa** com detalhes sobre serviços e planos
+- **Proteção de rotas** baseada no tipo de usuário
 
-## Learn More
+## 🚀 Tecnologias Utilizadas
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS, Shadcn/UI, Framer Motion
+- **Backend**: Next.js API Routes, NextAuth.js, Prisma ORM
+- **Banco de Dados**: PostgreSQL
+- **DevOps**: Docker, Biome, Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📋 Pré-requisitos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js 18.x ou superior
+- npm ou yarn
+- Docker e Docker Compose
+- Git
 
-## Deploy on Vercel
+## 🔧 Instalação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone o repositório**
+   \`\`\`bash
+   git clone https://github.com/seu-usuario/cognitec.git
+   cd cognitec
+   \`\`\`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Instale as dependências**
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+3. **Configure as variáveis de ambiente**
+
+   - Crie um arquivo `.env` na raiz do projeto com base no `.env.example`
+     \`\`\`
+     DATABASE_URL="postgresql://postgres:postgres@localhost:5432/cognitec"
+     NEXTAUTH_SECRET="sua-chave-secreta-aqui"
+     NEXTAUTH_URL="http://localhost:3000"
+     ADMIN_EMAIL="admin@cognitec.com"
+     ADMIN_PASSWORD="senha-segura-aqui"
+     \`\`\`
+
+4. **Inicie o banco de dados com Docker**
+   \`\`\`bash
+   docker-compose up -d
+   \`\`\`
+
+5. **Execute as migrações do Prisma**
+   \`\`\`bash
+   npx prisma migrate dev
+   \`\`\`
+
+6. **Inicie o servidor de desenvolvimento**
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+7. **Acesse a aplicação**
+   - Abra seu navegador e acesse `http://localhost:3000`
+
+## 👥 Tipos de Usuário
+
+- **Familiar**: Acesso a funcionalidades básicas para acompanhamento do paciente
+- **Cuidador**: Acesso a ferramentas de monitoramento e gestão de cuidados
+- **Médico**: Acesso a relatórios detalhados e histórico médico
+- **Administrador**: Acesso completo ao sistema, incluindo gerenciamento de usuários
+
+## 📱 Interface do Usuário
+
+A interface do CogniTec foi projetada para ser intuitiva e acessível, com foco na experiência do usuário. Utilizamos animações suaves e um design limpo para facilitar a navegação.
+
+### Principais Telas
+
+- **Landing Page**: Apresentação da plataforma, serviços e planos
+- **Login/Cadastro**: Sistema de autenticação com diferentes perfis
+- **Painel Administrativo**: Gerenciamento de usuários e estatísticas
+- **Perfil do Usuário**: Informações pessoais e configurações
+
+## 🤝 Como Contribuir
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nome-da-feature`)
+3. Faça commit das suas alterações (`git commit -m 'feat: descrição da sua feature'`)
+4. Faça push para a branch (`git push origin feature/nome-da-feature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+## 📞 Contato
+
+- Email: cognitecst@gmail.com
+- Website: [cognitec.com](https://cognitec.com)
+
+---
+
+<p align="center">
+  Desenvolvido com ❤️ pela equipe CogniTec
+</p>
