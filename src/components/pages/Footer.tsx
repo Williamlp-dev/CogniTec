@@ -12,7 +12,7 @@ export function Footer() {
   const isInView = useInView(footerRef, { once: true, amount: 0.2 })
 
   return (
-    <footer ref={footerRef} className="bg-black text-white font-poppins text-sm">
+    <footer id="faq" ref={footerRef} className="bg-black text-white font-poppins text-sm">
       <AnimatePresence>
         {isInView && (
           <motion.div

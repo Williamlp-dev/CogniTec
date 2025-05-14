@@ -22,7 +22,7 @@ export default function Plans() {
   }
 
   return (
-    <section ref={sectionRef} className="overflow-hidden">
+    <section id="planos" ref={sectionRef} className="overflow-hidden">
       <AnimatePresence>
         {isInView && (
           <>

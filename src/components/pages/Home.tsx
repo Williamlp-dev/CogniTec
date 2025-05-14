@@ -9,7 +9,7 @@ export default function Home() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   return (
-    <section ref={sectionRef} className="min-h-screen relative">
+    <section id="home" ref={sectionRef} className="min-h-screen relative">
       <div className="absolute inset-0">
         <Image
           src="/assets/img/cabeca3.png"

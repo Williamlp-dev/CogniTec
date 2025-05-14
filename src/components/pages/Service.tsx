@@ -24,7 +24,7 @@ export default function Service() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 overflow-hidden">
+    <section id="servicos" ref={sectionRef} className="py-16 overflow-hidden">
       <AnimatePresence>
         {isInView && (
           <>

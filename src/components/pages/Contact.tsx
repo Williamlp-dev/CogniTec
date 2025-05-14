@@ -10,7 +10,7 @@ export default function ContactSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   return (
-    <section ref={sectionRef} className="py-16 bg-white">
+    <section id="contato" ref={sectionRef} className="py-16 bg-white">
       <AnimatePresence>
         {isInView && (
           <motion.div

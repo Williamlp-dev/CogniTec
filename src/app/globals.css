@@ -21,6 +21,10 @@
   --font-poppins: var(--font-poppins);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .testimonial-swiper .swiper-pagination-bullet {
   background-color: white;
   opacity: 0.5;

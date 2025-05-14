@@ -7,17 +7,17 @@ import { useEffect, useRef, useState } from 'react'
 
 const links = [
   { name: 'Início', href: '/' },
-  { name: 'Sobre', href: '/sobre' },
-  { name: 'Serviços', href: '/servicos' },
-  { name: 'Planos', href: '/planos' },
-  { name: 'Contato', href: '/contato' },
+  { name: 'Sobre', href: '#sobre' },
+  { name: 'Serviços', href: '#servicos' },
+  { name: 'Planos', href: '#planos' },
+  { name: 'Contato', href: '#contato' },
 ]
 
 const moreLinks = [
-  { name: 'Blog', href: '/blog' },
-  { name: 'FAQ', href: '/faq' },
-  { name: 'Recursos', href: '/recursos' },
-  { name: 'Parceiros', href: '/parceiros' },
+  { name: 'Blog', href: '#faq' },
+  { name: 'FAQ', href: '#faq' },
+  { name: 'Recursos', href: '#faq' },
+  { name: 'Parceiros', href: '#faq' },
 ]
 
 const navItemVariants = {

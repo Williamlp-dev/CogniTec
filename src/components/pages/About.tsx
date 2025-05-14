@@ -10,7 +10,7 @@ export default function About() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   return (
-    <section ref={sectionRef} className="min-h-screen max-w-6xl mx-auto px-4 py-16">
+    <section id="sobre" ref={sectionRef} className="min-h-screen max-w-6xl mx-auto px-4 py-16">
       <AnimatePresence>
         {isInView && (
           <>
