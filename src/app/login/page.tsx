@@ -79,9 +79,15 @@ export default function LoginPage() {
       } else {
         toast({
           title: "Login realizado com sucesso",
-          description: "Redirecionando para o dashboard...",
+          description: "Redirecionando...",
         })
-        router.push("/dashboard")
+
+        // Verificar se é o administrador
+        if (loginEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+          router.push("/admin/dashboard")
+        } else {
+          router.push("/perfil")
+        }
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error)
@@ -268,7 +274,7 @@ export default function LoginPage() {
 
             {/* Tab de Login */}
             <TabsContent value="login">
-              <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
+              <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
                   <form className="space-y-4" onSubmit={handleLogin}>
                     {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
@@ -283,7 +289,7 @@ export default function LoginPage() {
                           id="email-login"
                           type="email"
                           placeholder="seu@email.com"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={loginEmail}
                           onChange={(e) => setLoginEmail(e.target.value)}
                           required
@@ -306,7 +312,7 @@ export default function LoginPage() {
                           id="password-login"
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={loginPassword}
                           onChange={(e) => setLoginPassword(e.target.value)}
                           required
@@ -314,8 +320,8 @@ export default function LoginPage() {
                         <Button
                           type="button"
                           variant="ghost"
+                          className="text-white hover:text-yellow-400 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
                           size="icon"
-                          className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
                           onClick={togglePasswordVisibility}
                         >
                           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -345,7 +351,7 @@ export default function LoginPage() {
 
             {/* Tab de Registro */}
             <TabsContent value="register">
-              <Card className="border-0 shadow-lg bg-gray-800/50 backdrop-blur-sm">
+              <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
                   <form className="space-y-4" onSubmit={handleRegister}>
                     {registerError && <p className="text-red-500 text-sm">{registerError}</p>}
@@ -359,7 +365,7 @@ export default function LoginPage() {
                         <Input
                           id="name"
                           placeholder="Seu nome completo"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           required
@@ -377,7 +383,7 @@ export default function LoginPage() {
                           id="email-register"
                           type="email"
                           placeholder="seu@email.com"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
@@ -395,7 +401,7 @@ export default function LoginPage() {
                           id="password-register"
                           type={showPassword ? "text" : "password"}
                           placeholder="Mínimo 8 caracteres"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           required
@@ -403,8 +409,8 @@ export default function LoginPage() {
                         <Button
                           type="button"
                           variant="ghost"
+                          className="text-white hover:text-yellow-400 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
                           size="icon"
-                          className="absolute right-2 top-2 h-6 w-6 text-gray-400 hover:text-white"
                           onClick={togglePasswordVisibility}
                         >
                           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -426,19 +432,19 @@ export default function LoginPage() {
                         }}
                       >
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="familiar" id="familiar" className="border-gray-600" />
+                          <RadioGroupItem value="familiar" id="familiar" className="border-gray-600 text-white" />
                           <Label htmlFor="familiar" className="text-white">
                             Familiar
                           </Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="cuidador" id="cuidador" className="border-gray-600" />
+                          <RadioGroupItem value="cuidador" id="cuidador" className="border-gray-600 text-white" />
                           <Label htmlFor="cuidador" className="text-white">
                             Cuidador
                           </Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="medico" id="medico" className="border-gray-600" />
+                          <RadioGroupItem value="medico" id="medico" className="border-gray-600 text-white" />
                           <Label htmlFor="medico" className="text-white">
                             Médico
                           </Label>
@@ -469,7 +475,7 @@ export default function LoginPage() {
                         <Input
                           id="phone"
                           placeholder="(00) 00000-0000"
-                          className="pl-10 bg-gray-700 border-gray-600 text-white"
+                          className="bg-gray-700 border-gray-600 text-white pl-10"
                           value={phone}
                           onChange={(e) => setPhone(formatPhone(e.target.value))}
                           required

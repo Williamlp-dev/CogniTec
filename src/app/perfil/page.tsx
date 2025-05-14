@@ -77,7 +77,6 @@ export default function ProfilePage() {
         <Tabs defaultValue="profile" className="w-full">
           <TabsList className="mb-8">
             <TabsTrigger value="profile">Perfil</TabsTrigger>
-            <TabsTrigger value="security">Segurança</TabsTrigger>
             <TabsTrigger value="preferences">Preferências</TabsTrigger>
           </TabsList>
 
@@ -93,7 +92,7 @@ export default function ProfilePage() {
                     <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || "User"} />
                     <AvatarFallback className="text-4xl bg-yellow-400 text-black">{getInitials()}</AvatarFallback>
                   </Avatar>
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full text-stone-950">
                     Alterar Foto
                   </Button>
                 </CardContent>
@@ -131,45 +130,10 @@ export default function ProfilePage() {
                       <Label htmlFor="userType">Tipo de Usuário</Label>
                       <Input id="userType" value={session?.user?.userType || ""} disabled className="bg-gray-100" />
                     </div>
-
-                    <Button type="submit" className="w-full" disabled={isLoading}>
-                      {isLoading ? "Salvando..." : "Salvar Alterações"}
-                    </Button>
                   </form>
                 </CardContent>
               </Card>
             </div>
-          </TabsContent>
-
-          <TabsContent value="security">
-            <Card>
-              <CardHeader>
-                <CardTitle>Segurança</CardTitle>
-                <CardDescription>Gerencie suas configurações de segurança.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="current-password">Senha Atual</Label>
-                    <Input id="current-password" type="password" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="new-password">Nova Senha</Label>
-                    <Input id="new-password" type="password" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="confirm-password">Confirmar Nova Senha</Label>
-                    <Input id="confirm-password" type="password" />
-                  </div>
-
-                  <Button type="submit" className="w-full">
-                    Alterar Senha
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
           </TabsContent>
 
           <TabsContent value="preferences">
