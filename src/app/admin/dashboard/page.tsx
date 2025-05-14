@@ -150,42 +150,41 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen pt-24 pb-12 px-4 bg-white text-black">
       <Toaster />
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Painel de Administração</h1>
-
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+          <Card className="bg-gray-800 border-0 shadow-lg">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-lg">Total de Usuários</CardTitle>
-              <CardDescription className="text-gray-400">Todos os usuários cadastrados</CardDescription>
+              <CardDescription className="text-gray-200">Todos os usuários cadastrados</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
-                <Users className="h-8 w-8 text-yellow-400 mr-3" />
+                <Users className="h-8 w-8 text-gray-100 mr-3" />
                 <span className="text-3xl font-bold text-white">{stats.total}</span>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+          <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-lg">Familiares</CardTitle>
-              <CardDescription className="text-gray-400">Usuários do tipo familiar</CardDescription>
+              <CardDescription className="text-gray-200">Usuários do tipo familiar</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
-                <Users className="h-8 w-8 text-green-400 mr-3" />
+                <Users className="h-8 w-8 text-green-300 mr-3" />
                 <span className="text-3xl font-bold text-white">{stats.familiar}</span>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+          <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-lg">Cuidadores</CardTitle>
-              <CardDescription className="text-gray-400">Usuários do tipo cuidador</CardDescription>
+              <CardDescription className="text-gray-200">Usuários do tipo cuidador</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
@@ -195,10 +194,10 @@ export default function AdminDashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+          <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-white text-lg">Médicos</CardTitle>
-              <CardDescription className="text-gray-400">Usuários do tipo médico</CardDescription>
+              <CardDescription className="text-gray-200">Usuários do tipo médico</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
@@ -209,17 +208,17 @@ export default function AdminDashboardPage() {
           </Card>
         </div>
 
-        <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+        <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-white">Gerenciamento de Usuários</CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardDescription className="text-gray-200">
               Visualize, pesquise e gerencie todos os usuários cadastrados no sistema
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
               <div className="relative w-full md:w-64">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-200" />
                 <Input
                   placeholder="Buscar usuários..."
                   className="bg-gray-700 border-gray-600 text-white pl-10"
@@ -241,7 +240,7 @@ export default function AdminDashboardPage() {
             {isLoading ? (
               <div className="text-center py-8">Carregando usuários...</div>
             ) : filteredUsers.length === 0 ? (
-              <div className="text-center py-8 text-gray-400">Nenhum usuário encontrado com os filtros atuais.</div>
+              <div className="text-center py-8 text-gray-200">Nenhum usuário encontrado com os filtros atuais.</div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>

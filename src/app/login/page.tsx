@@ -246,13 +246,13 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen pt-8 pb-12 px-4 bg-gradient-to-b from-gray-900 to-black">
+    <main className="min-h-screen pt-8 pb-12 px-4 bg-whte">
       <Toaster />
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-start mb-6">
           <Button
             variant="ghost"
-            className="text-white hover:text-yellow-400 hover:bg-transparent flex items-center gap-2"
+            className="text-black hover:text-yellow-400 hover:bg-transparent flex items-center gap-2"
             onClick={goToHome}
           >
             <ArrowLeft size={16} />
@@ -262,8 +262,8 @@ export default function LoginPage() {
 
         <div className="w-full max-w-md mx-auto">
           <div className="mb-8 text-center">
-            <h1 className="text-3xl font-bold text-white mb-2">Bem-vindo à CogniTec</h1>
-            <p className="text-gray-400">Acesse sua conta ou crie um novo cadastro</p>
+            <h1 className="text-3xl font-bold text-black mb-2">Bem-vindo à CogniTec</h1>
+            <p className="text-gray-800">Acesse sua conta ou crie um novo cadastro</p>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -274,7 +274,7 @@ export default function LoginPage() {
 
             {/* Tab de Login */}
             <TabsContent value="login">
-              <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+              <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
                   <form className="space-y-4" onSubmit={handleLogin}>
                     {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
@@ -320,7 +320,7 @@ export default function LoginPage() {
                         <Button
                           type="button"
                           variant="ghost"
-                          className="text-white hover:text-yellow-400 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
+                          className="text-gray-400 hover:text-yellow-700 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
                           size="icon"
                           onClick={togglePasswordVisibility}
                         >
@@ -351,7 +351,7 @@ export default function LoginPage() {
 
             {/* Tab de Registro */}
             <TabsContent value="register">
-              <Card className="bg-gray-800/50 border-0 shadow-lg backdrop-blur-sm">
+              <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
                   <form className="space-y-4" onSubmit={handleRegister}>
                     {registerError && <p className="text-red-500 text-sm">{registerError}</p>}
@@ -409,7 +409,7 @@ export default function LoginPage() {
                         <Button
                           type="button"
                           variant="ghost"
-                          className="text-white hover:text-yellow-400 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
+                          className="text-gray-400 hover:text-yellow-700 hover:bg-transparent absolute right-2 top-2 h-6 w-6"
                           size="icon"
                           onClick={togglePasswordVisibility}
                         >
@@ -486,7 +486,7 @@ export default function LoginPage() {
                     <div className="flex items-start space-x-2 pt-2">
                       <Checkbox
                         id="terms"
-                        className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:text-black"
+                        className="border-gray-400 data-[state=checked]:bg-yellow-400 data-[state=checked]:text-black"
                         checked={acceptTerms}
                         onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
                       />

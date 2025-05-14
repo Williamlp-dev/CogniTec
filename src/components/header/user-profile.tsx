@@ -56,7 +56,7 @@ export function UserProfile() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+        <Button className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10 border border-gray-200">
             <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || "User"} />
             <AvatarFallback className="bg-yellow-400 text-black font-medium">{getInitials()}</AvatarFallback>

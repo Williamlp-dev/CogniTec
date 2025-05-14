@@ -82,52 +82,52 @@ export default function ProfilePage() {
 
           <TabsContent value="profile">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="md:col-span-1">
+              <Card className="bg-gray-800 border-0 shadow-lg md:col-span-1">
                 <CardHeader>
-                  <CardTitle>Foto de Perfil</CardTitle>
-                  <CardDescription>Esta é sua foto de perfil atual.</CardDescription>
+                  <CardTitle className="text-white">Foto de Perfil</CardTitle>
+                  <CardDescription className="text-gray-200">Esta é sua foto de perfil atual.</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col items-center">
-                  <Avatar className="h-32 w-32 mb-4">
+                  <Avatar className="border-2 border-gray-200 h-32 w-32 mb-4">
                     <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || "User"} />
                     <AvatarFallback className="text-4xl bg-yellow-400 text-black">{getInitials()}</AvatarFallback>
                   </Avatar>
-                  <Button variant="outline" className="w-full text-stone-950">
-                    Alterar Foto
-                  </Button>
                 </CardContent>
               </Card>
 
-              <Card className="md:col-span-2">
+              <Card className="bg-gray-800 border-0 md:col-span-2">
                 <CardHeader>
-                  <CardTitle>Informações Pessoais</CardTitle>
-                  <CardDescription>Atualize suas informações pessoais.</CardDescription>
+                  <CardTitle className="text-white">Informações Pessoais</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleUpdateProfile} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Nome</Label>
+                      <Label className="text-white" htmlFor="name">Nome</Label>
                       <Input
                         id="name"
                         value={name}
+                        disabled
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Seu nome completo"
+                        className="bg-gray-100"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label className="text-white" htmlFor="email">Email</Label>
                       <Input
                         id="email"
                         type="email"
+                        disabled
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="seu@email.com"
+                        className="bg-gray-100"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="userType">Tipo de Usuário</Label>
+                      <Label className="text-white" htmlFor="userType">Tipo de Usuário</Label>
                       <Input id="userType" value={session?.user?.userType || ""} disabled className="bg-gray-100" />
                     </div>
                   </form>
@@ -137,13 +137,13 @@ export default function ProfilePage() {
           </TabsContent>
 
           <TabsContent value="preferences">
-            <Card>
+            <Card className="bg-gray-800 border-0 shadow-lg">
               <CardHeader>
-                <CardTitle>Preferências</CardTitle>
-                <CardDescription>Gerencie suas preferências de notificação e privacidade.</CardDescription>
+                <CardTitle className="text-white">Preferências</CardTitle>
+                <CardDescription className="text-gray-400">Gerencie suas preferências de notificação e privacidade.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-500">Configurações de preferências em breve.</p>
+                <p className="text-red-500">Configurações de preferências em breve.</p>
               </CardContent>
             </Card>
           </TabsContent>
