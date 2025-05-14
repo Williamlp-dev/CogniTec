@@ -3,7 +3,7 @@ import { db } from "@/lib/db"
 import { getServerSession } from "next-auth"
 import { type NextRequest, NextResponse } from "next/server"
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, context: { params: { id: string } }) {
   try {
     // Verificar se o usuário está autenticado e é administrador
     const session = await getServerSession(authOptions)
@@ -12,7 +12,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ error: "Não autorizado" }, { status: 403 })
     }
 
-    const userId = params.id
+    const userId = context.params.id
 
     // Verificar se o usuário existe
     const user = await db.user.findUnique({
