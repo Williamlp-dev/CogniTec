@@ -24,12 +24,10 @@ export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
-  // Estados para o formulário de login
   const [loginEmail, setLoginEmail] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
   const [loginError, setLoginError] = useState("")
 
-  // Estados para o formulário de registro
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -56,7 +54,6 @@ export default function LoginPage() {
     router.push("/")
   }
 
-  // Função para lidar com o login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
@@ -82,7 +79,6 @@ export default function LoginPage() {
           description: "Redirecionando...",
         })
 
-        // Verificar se é o administrador
         if (loginEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
           router.push("/admin/dashboard")
         } else {
@@ -102,13 +98,11 @@ export default function LoginPage() {
     }
   }
 
-  // Atualizar a função handleRegister para exibir mensagens de erro mais específicas
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setRegisterError("")
 
-    // Validações básicas
     if (!name || !email || !password || !document || !phone) {
       setRegisterError("Todos os campos são obrigatórios")
       setIsLoading(false)
@@ -143,7 +137,6 @@ export default function LoginPage() {
     }
 
     try {
-      // Remover formatação do documento e telefone antes de enviar
       const cleanDocument = document.replace(/\D/g, "")
       const cleanPhone = phone.replace(/\D/g, "")
 
@@ -158,7 +151,6 @@ export default function LoginPage() {
 
       console.log("Enviando dados de registro:", requestData)
 
-      // Usar a URL absoluta para a API
       const apiUrl = `${window.location.origin}/api/register`
       console.log("URL da API:", apiUrl)
 
@@ -180,7 +172,6 @@ export default function LoginPage() {
           errorMessage = errorData.error || errorMessage
         } catch (e) {
           console.error("Erro ao parsear resposta:", e)
-          // Não tente ler o corpo da resposta novamente, pois já foi consumido
           console.error("Status da resposta:", response.status, response.statusText)
         }
 
@@ -201,7 +192,6 @@ export default function LoginPage() {
         description: "Você já pode fazer login com suas credenciais",
       })
 
-      // Limpar o formulário e mudar para a aba de login
       setName("")
       setEmail("")
       setPassword("")
@@ -222,13 +212,12 @@ export default function LoginPage() {
     }
   }
 
-  // Função para formatar o CPF/CRM
+
   const formatDocument = (value: string) => {
     if (userType === "medico") {
-      // Formato para CRM: apenas números e letras, máximo 10 caracteres
       return value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 10)
     } else {
-      // Formato para CPF: apenas números, máximo 11 caracteres
+
       const cpf = value.replace(/\D/g, "").slice(0, 11)
       if (cpf.length <= 3) return cpf
       if (cpf.length <= 6) return `${cpf.slice(0, 3)}.${cpf.slice(3)}`
@@ -237,7 +226,6 @@ export default function LoginPage() {
     }
   }
 
-  // Função para formatar o telefone
   const formatPhone = (value: string) => {
     const phone = value.replace(/\D/g, "").slice(0, 11)
     if (phone.length <= 2) return phone
@@ -272,7 +260,6 @@ export default function LoginPage() {
               <TabsTrigger value="register">Cadastro</TabsTrigger>
             </TabsList>
 
-            {/* Tab de Login */}
             <TabsContent value="login">
               <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
@@ -349,7 +336,6 @@ export default function LoginPage() {
               </Card>
             </TabsContent>
 
-            {/* Tab de Registro */}
             <TabsContent value="register">
               <Card className="bg-gray-800 border-0 shadow-lg backdrop-blur-sm">
                 <CardContent className="pt-6">
@@ -428,7 +414,7 @@ export default function LoginPage() {
                         value={userType}
                         onValueChange={(value) => {
                           setUserType(value)
-                          setDocument("") // Limpar o documento ao mudar o tipo
+                          setDocument("")
                         }}
                       >
                         <div className="flex items-center space-x-2">

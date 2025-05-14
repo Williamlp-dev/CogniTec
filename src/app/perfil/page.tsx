@@ -1,8 +1,6 @@
 "use client"
 
 import type React from "react"
-
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -33,11 +31,8 @@ export default function ProfilePage() {
     setIsLoading(true)
 
     try {
-      // Here you would typically call an API to update the user profile
-      // For now, we'll just simulate a successful update
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // Update the session with the new data
       await update({
         ...session,
         user: {
@@ -62,7 +57,6 @@ export default function ProfilePage() {
     }
   }
 
-  // Get first letter of user's name for avatar fallback
   const getInitials = () => {
     if (!session?.user?.name) return "U"
     return session.user.name.charAt(0).toUpperCase()

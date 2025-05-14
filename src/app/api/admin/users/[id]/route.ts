@@ -5,7 +5,7 @@ import { NextResponse, NextRequest } from "next/server"
 
 export async function DELETE(request: NextRequest) {
   try {
-    // Obter o ID do usuário pela URL
+
     const url = new URL(request.url)
     const id = url.pathname.split("/").pop()
 

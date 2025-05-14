@@ -5,14 +5,12 @@ import { NextResponse } from "next/server"
 
 export async function GET() {
   try {
-    // Verificar se o usuário está autenticado e é administrador
     const session = await getServerSession(authOptions)
 
     if (!session || session.user.isAdmin !== true) {
       return NextResponse.json({ error: "Não autorizado" }, { status: 403 })
     }
 
-    // Buscar todos os usuários
     const users = await db.user.findMany({
       select: {
         id: true,

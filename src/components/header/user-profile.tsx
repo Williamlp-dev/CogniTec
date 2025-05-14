@@ -9,7 +9,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-// Adicionar a importação do ícone Dashboard
 import { LogOut, User, LayoutDashboard } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
@@ -27,7 +26,6 @@ export function UserProfile() {
         redirect: true,
         callbackUrl: "/",
       })
-      // No need for manual router.push as we're using redirect: true
     } catch (error) {
       console.error("Error during logout:", error)
       setIsLoading(false)
@@ -42,12 +40,10 @@ export function UserProfile() {
     router.push("/perfil/configuracoes")
   }
 
-  // Adicionar a função para navegar para a dashboard de administração
   const navigateToAdminDashboard = () => {
     router.push("/admin/dashboard")
   }
 
-  // Get first letter of user's name for avatar fallback
   const getInitials = () => {
     if (!session?.user?.name) return "U"
     return session.user.name.charAt(0).toUpperCase()

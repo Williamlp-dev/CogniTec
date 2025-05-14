@@ -3,23 +3,19 @@ import { hash } from "bcryptjs"
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
-// Esquema de validação para CPF
 const cpfSchema = z.string().length(11, "CPF deve ter 11 dígitos").regex(/^\d+$/, "CPF deve conter apenas números")
 
-// Esquema de validação para CRM
 const crmSchema = z
   .string()
   .min(4, "CRM deve ter no mínimo 4 caracteres")
   .max(10, "CRM deve ter no máximo 10 caracteres")
 
-// Esquema de validação para telefone
 const phoneSchema = z
   .string()
   .min(10, "Telefone deve ter no mínimo 10 dígitos")
   .max(11, "Telefone deve ter no máximo 11 dígitos")
   .regex(/^\d+$/, "Telefone deve conter apenas números")
 
-// Esquema de validação para o registro
 const registerSchema = z.object({
   name: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
   email: z.string().email("Email inválido"),
@@ -41,7 +37,6 @@ export async function POST(req: Request) {
 
     const { name, email, password, userType, document, phone } = registerSchema.parse(body)
 
-    // Validação específica para o documento baseado no tipo de usuário
     if (userType === "medico") {
       try {
         crmSchema.parse(document)
@@ -56,11 +51,9 @@ export async function POST(req: Request) {
       }
     }
 
-    // Remover formatação do documento e telefone
     const cleanDocument = document.replace(/\D/g, "")
     const cleanPhone = phone.replace(/\D/g, "")
 
-    // Verificar se o email já existe
     const existingEmail = await db.user.findUnique({
       where: { email },
     })
@@ -69,7 +62,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Email já cadastrado. Por favor, use outro email." }, { status: 409 })
     }
 
-    // Verificar se o documento (CPF/CRM) já existe
     const existingDocument = await db.user.findFirst({
       where: { document: cleanDocument },
     })
@@ -86,7 +78,6 @@ export async function POST(req: Request) {
       )
     }
 
-    // Verificar se o telefone já existe
     const existingPhone = await db.user.findFirst({
       where: { phone: cleanPhone },
     })
@@ -95,10 +86,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Telefone já cadastrado. Por favor, use outro número." }, { status: 409 })
     }
 
-    // Hash da senha
     const hashedPassword = await hash(password, 10)
 
-    // Criar o usuário
     const user = await db.user.create({
       data: {
         name,
