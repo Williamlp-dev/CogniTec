@@ -9,7 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LogOut, Settings, User } from "lucide-react"
+// Adicionar a importação do ícone Dashboard
+import { LogOut, Settings, User, LayoutDashboard } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -32,6 +33,11 @@ export function UserProfile() {
 
   const navigateToSettings = () => {
     router.push("/perfil/configuracoes")
+  }
+
+  // Adicionar a função para navegar para a dashboard de administração
+  const navigateToAdminDashboard = () => {
+    router.push("/admin/dashboard")
   }
 
   // Get first letter of user's name for avatar fallback
@@ -60,10 +66,13 @@ export function UserProfile() {
           <User className="mr-2 h-4 w-4" />
           <span>Perfil</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={navigateToSettings} className="cursor-pointer">
-          <Settings className="mr-2 h-4 w-4" />
-          <span>Configurações</span>
-        </DropdownMenuItem>
+        {/* Adicionar este bloco condicional para mostrar o link da dashboard apenas para administradores */}
+        {session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+          <DropdownMenuItem onClick={navigateToAdminDashboard} className="cursor-pointer">
+            <LayoutDashboard className="mr-2 h-4 w-4" />
+            <span>Dashboard Admin</span>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer" disabled={isLoading}>
           <LogOut className="mr-2 h-4 w-4" />
